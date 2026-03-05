@@ -4,29 +4,26 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("--- Advanced Palindrome Checker (Cleaning Input) ---");
-        System.out.print("Enter text or phrase: ");
+        System.out.println("--- Optimized Palindrome Checker (StringBuilder) ---");
+        System.out.print("Enter text: ");
 
-        String originalInput = scanner.nextLine();
+        String input = scanner.nextLine();
+        String cleaned = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        // Step 1: Remove spaces and special characters using Regex
-        // Step 2: Convert to lowercase for case-insensitivity
-        String cleanedInput = originalInput.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        // Use StringBuilder for efficient string manipulation
+        StringBuilder reversedBuilder = new StringBuilder();
 
-        String reversed = "";
-
-        // Reverse logic
-        for (int i = cleanedInput.length() - 1; i >= 0; i--) {
-            reversed = reversed + cleanedInput.charAt(i);
+        // Iterate backwards and append to the builder
+        for (int i = cleaned.length() - 1; i >= 0; i--) {
+            reversedBuilder.append(cleaned.charAt(i));
         }
 
-        // Comparison of cleaned strings
-        System.out.println("Cleaned text used for check: " + cleanedInput);
+        String reversed = reversedBuilder.toString();
 
-        if (!cleanedInput.isEmpty() && cleanedInput.equals(reversed)) {
-            System.out.println("Result: It is a palindrome.");
+        if (!cleaned.isEmpty() && cleaned.equals(reversed)) {
+            System.out.println("Result: '" + input + "' is a palindrome.");
         } else {
-            System.out.println("Result: It is NOT a palindrome.");
+            System.out.println("Result: '" + input + "' is NOT a palindrome.");
         }
 
         scanner.close();

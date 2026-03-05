@@ -2,31 +2,29 @@ import java.util.Scanner;
 
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("--- Interactive Palindrome Checker ---");
-        System.out.print("Enter the text you want to check: ");
+        System.out.println("--- Case-Insensitive Palindrome Checker ---");
+        System.out.print("Enter text: ");
 
+        String originalInput = scanner.nextLine();
 
-        String input = scanner.nextLine();
+        // Convert input to lowercase to handle case-insensitivity
+        String processedInput = originalInput.toLowerCase();
         String reversed = "";
 
-
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        // Reverse logic
+        for (int i = processedInput.length() - 1; i >= 0; i--) {
+            reversed = reversed + processedInput.charAt(i);
         }
 
-        // Display results
-        System.out.println("Reversed Result: " + reversed);
-
-        if (input.equalsIgnoreCase(reversed)) {
-            System.out.println("Success: '" + input + "' is a palindrome.");
+        // Comparison of lowercase strings
+        if (processedInput.equals(reversed)) {
+            System.out.println("Result: '" + originalInput + "' is a palindrome (Case-Insensitive).");
         } else {
-            System.out.println("Notice: '" + input + "' is not a palindrome.");
+            System.out.println("Result: '" + originalInput + "' is NOT a palindrome.");
         }
 
-        // Close scanner to release resources
         scanner.close();
     }
 }
